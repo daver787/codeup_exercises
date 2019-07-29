@@ -67,3 +67,19 @@ print(df_csv.describe())
 for col in df_csv:
     if df_csv[col].dtype=='O':
        print(df_csv[col].value_counts()[0:5])
+#5) Create a file named `aquire.py` This file should define at least two functions.
+#get_titanic_data: returns the titanic data from the codeup data science database as a pandas dataframe
+#get_iris_data:returns the data from the `iris_db` on the codeup data science database as a pandas data frame.
+#The returned data frame should include the actual name of the species in addition to the species ids. 
+#We will use the functions in a later exercise.
+import pandas as pd
+import env
+def get_connection(db, user=env.user, host=env.host, password=env.password):
+    return f'mysql+pymysql://{user}:{password}@{host}/{db}'
+def get_titanic_data():
+    return pd.read_sql('SELECT * FROM passengers',get_connection('titanic_db'))
+
+iris_sql="SELECT measurements.measurement_id,measurements.sepal_length,measurements.sepal_width,measurements.petal_length,measurements.petal_width,species.species_name,species.species_id FROM measurements JOIN species ON(species.species_id=measurements.species_id)"
+def get_iris_data():
+       return pd.read_sql(iris_sql,get_connection('iris_db'))
+
