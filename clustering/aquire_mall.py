@@ -9,4 +9,3 @@ def get_connection(db, user=env.user, host=env.host, password=env.password):
 def get_mall_data():
     return pd.read_sql('SELECT * FROM customers',get_connection('mall_customers'))  
 
-mall_df=get_mall_data()
