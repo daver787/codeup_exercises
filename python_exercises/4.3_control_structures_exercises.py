@@ -10,9 +10,9 @@ write the python code that calculates the weekly paycheck. You get paid time and
 #Exercise 1a
 day_of_week=input("Enter a day of the week")
 if day_of_week=='Monday':
-    print("Sorry not Monday")
+    print("It's Monday")
 else:
-    print("It's Monday!")    
+    print("Sorry not Monday!")    
 #Exercise 1b
 weekend_or_not=input("Enter a day of the week")
 if weekend_or_not in ['Saturday','Sunday']:
@@ -23,7 +23,7 @@ else:
 num_hours=50
 hour_wage=11
 
-if num_hours<40:
+if num_hours<=40:
     paycheck=num_hours*hour_wage
     print(paycheck)
 else:
@@ -146,9 +146,9 @@ Here is an odd number: 43
 Here is an odd number: 45
 Here is an odd number: 47
 Here is an odd number: 49
-The input function can be used to prompt for input and use that input in your python code. Prompt the user to enter a positive number and write a loop that counts from 0 to that number. (Hints: first make sure that the value the user entered is a valid number, also note that the input function returns a string, so you'll need to convert this to a numeric type.) """
-
-#Write a program that prompts the user for a positive integer. Next write a loop that prints out the numbers from the number the user entered down to 1.   
+The input function can be used to prompt for input and use that input in your python code. Prompt the user to enter a positive number and write a loop that counts from 0 to that number. (Hints: first make sure that the value the user entered is a valid number, also note that the input function returns a string, so you'll need to convert this to a numeric type.)
+Write a program that prompts the user for a positive integer. Next write a loop that prints out the numbers from the number the user entered down to 1.   
+ """
 #Exercise 2a.1
 i=5
 while i<=15:
@@ -159,19 +159,37 @@ while i<=15:
 for i in range(0,102,2):
     print(i)
 
+i=0    
+while i<=100:
+    print(i)
+    i+=2
+
 #Exercise 2a.3
 for i in range(100,-10,-5):
-    print(i)  
+    print(i)
+
+i=100
+while i>=-10:
+    print(i)
+    i-=5
+
 
 #Exercise 2a.4
 i=2
-while i**2<1000000:
-    i=i**2
+while i<1000000:
     print(i)
+    i=i**2
+    
 
 #Exercise 2a.5
 for i in range(100,0,-5):
     print(i)
+
+i=100
+while i>=5:
+    print(i)
+    i-=5
+
 
 #Exercise 2b.1
 num=input("Enter a number") 
@@ -180,7 +198,7 @@ for i in range(1,11):
     print(str(i)+"*"+str(num)+"="+str(i*num)) 
 
 #Exercise 2b.2
-for num in range(1,9):
+for num in range(1,10):
     print(str(num)*num)
 
 #Exercise 2c.1 
@@ -258,12 +276,16 @@ number | squared | cubed
 4      | 16      | 64
 5      | 25      | 125
 Bonus: Research python's format string specifiers to align the table   """ 
-num_test=int(input("Please enter an integer"))
-for i in range(1,num_test+1):
-    if i==1:
-        print('number  | squared  | cubed')
-        print('______  |  ______  |  ______')
+while True:
+    num_test=int(input("Please enter an integer"))
+    for i in range(1,num_test+1):
+        if i==1:
+            print('number  | squared  | cubed')
+            print('______  |  ______  |  ______')
     print(i,'  |', i**2,'  |',i**3)
+    user_choice=input("Should we continue ?")
+    if user_choice="no":
+        break
     
 #Exercise 5
 """ Convert given number grades into letter grades.
