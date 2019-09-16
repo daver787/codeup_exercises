@@ -6,38 +6,61 @@ from function_exercises import remove_vowels as rv
 fe.normalize_name('David')
 
 #Exercise 2
-import itertools
-combinations(('abcd','123'))
-combinations('abcd',2)
-
+import itertools as it
+l1=list(it.product(('abc','123'),2)
+l2=list(it.product(('abcd', '123'),2)
+print(len(l1))
+print(len(l2))
 #Exercise 3
 import json
 import re
-from collections import defaultdict,Counter
+from collections import defaultdict, Counter
 with open("profiles.json", "r") as read_file:
-    data = json.load(read_file)
-summary_dict=defaultdict(int)
-fruit_list=[]
-unread_messages=[]
-for dict in data:
-    summary_dict['total_users']+=1#total number of users counter
-    if dict['isActive']=='true':
-        summary_dict['active_count']+=1#active users counter
+    profiles = json.load(read_file)
+summary_dict = defaultdict(int)
+fruits = []
+messages = []
+for profile in profiles:
+    summary_dict['total_users'] += 1  #total number of users counter
+    if profile['isActive'] == 'true':
+        summary_dict['active_count'] += 1  #active users counter
     else:
-        summary_dict['inactive_count']+=1#inactive users counter
-    summary_dict['grand_total']=summary_dict['grand_total']+float(dict['balance'][1:].replace(",",""))#grand total accumulator
-    fruit_list.append(dict['favoriteFruit'])
-    unread_messages.append(dict['greeting'])
-summary_dict["average_balance"]=summary_dict["grand_total"]/summary_dict["total_users"]#average balance per user    
-counter=Counter(fruit_list)
-print(counter) 
+        summary_dict['inactive_count'] += 1  #inactive users counter
+    summary_dict['grand_total'] = summary_dict['grand_total'] + float(
+        profile['balance'][1:].replace(",", ""))  #grand total accumulator
+    fruits.append(profile['favoriteFruit'])
+    messages.append(profile['greeting'])
+summary_dict["average_balance"] = summary_dict["grand_total"] / summary_dict[
+    "total_users"]  #average balance per user
 
-sum=0 
-for message in unread_messages:
-    r1=re.findall(r'\d+',message)
-    sum=sum+int(r1[0])  
+#Count the fruits in fruit list with Counter or in dictionary
+fruit_dict={}
+for profile in profiles:
+    print([fruit for fruit in profile['favoriteFruit']])
 
-#example below is in the docs.
+
+for fruit in fruits:
+    if fruit in fruit_dict:
+        fruit_dict['fruit']+=1
+    else:
+        fruit_dict['fruit']=1
+print(fruit_dict)            
+print(fruits)
+
+counter = Counter(fruits)
+print(counter)
+
+#total number of unread messages
+sum = 0
+for message in messages:
+    r1 = re.findall(r'\d+', message)
+    sum = sum + int(r1[0])
+print('The total number of unread messages is ' + str(sum) + '.')
+
+#balance per user
 d = defaultdict(list)
-for dict in data:
-    d[dict['balance']].append(dict['_id'])
+for profile in profiles:
+    d[profile['balance']].append(profile['_id'])
+
+print(d[sorted(d)[0]])
+print(d[sorted(d, reverse=True)[0]])
