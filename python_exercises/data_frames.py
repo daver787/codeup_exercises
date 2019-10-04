@@ -62,6 +62,7 @@ mpg.shape
 #2b,c)
 mpg.info()
 mpg.describe()
+mpg.dtypes
 #2d,e)
 mpg.rename(columns = {'cty':'city','hwy':'highway'},inplace = True)
 #2f)
@@ -70,7 +71,7 @@ mpg[better_mileage]
 #2g)
 mpg['mileage_difference'] = mpg.highway-mpg.city
 #2h)
-mpg.sort_values(by = 'mileage_difference',ascending=False).head(1)
+mpg.sort_values(by = 'mileage_difference',ascending=False).head()
 #2i)
 print(mpg[mpg['class'] == 'compact'].sort_values(by='highway',ascending=True).head(1))
 print(mpg[mpg['class'] == 'compact'].sort_values(by='highway',ascending=True).tail(1))
@@ -88,10 +89,12 @@ mpg[mpg['manufacturer'] == 'dodge'].sort_values(by='average_mileage',ascending=F
 3b)What are the data types?
 3c)Summarize the dataframe with .info and .describe
 3d)What is the the weight of the fastest animal?
-3e)What is the overall percentage of specials? """
+3e)What is the overall percentage of specials? 
+3f)How many animals are hoppers that are above the median speed? What percentage is this? """
 
 mammals=data('Mammals')
-
+#data('Mammals',show_doc=True)
+mammals.head()
 #3a)
 mammals.shape
 #3b)
@@ -103,3 +106,8 @@ mammals.describe()
 mammals[['weight','speed']].sort_values(by='speed',ascending=False).head(1)
 #3e)
 sum(mammals.specials==True)/len(mammals)*100
+(mammals.specials==True).mean()*100
+#3f
+num_animals=sum((mammals.hoppers == True) & (mammals.speed > mammals.speed.median()))
+print(num_animals)
+print(round(num_animals/len(mammals)*100,2))
