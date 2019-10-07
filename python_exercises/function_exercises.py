@@ -81,7 +81,25 @@ def cumsum(num_list):
             csum=csum+num_list[ele]
         cumsum_list.append(csum)
     return cumsum_list        
+
 #Bonus1
+""" def twelveto24(time):
+    if time[-2:-1]=="am":
+        position=time.index(:)
+        twenty_four=int(time[:position])+12
+        time=str(twenty_four)+time[position+1:-2]
+    else:
+        time=time[:-2] 
+    return time  """    
+
+
+
+
+
+
+
+
+
 #Bonus2
 
 
